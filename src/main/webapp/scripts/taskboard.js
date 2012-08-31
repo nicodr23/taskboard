@@ -455,7 +455,7 @@ Taskboard.openDB = function() {
 	// WebKit hasn't implemented the current version of the spec
 	request.onupgradeneeded = function(e) {
 		Taskboard.tasksDB = e.target.result; 
-		Taskboard.tasksDB.deleteObjectStore("task");
+		//Taskboard.tasksDB.deleteObjectStore("task");
 		Taskboard.tasksDB.createObjectStore("task", {keyPath:'id'},true);
 	};
 
@@ -469,7 +469,7 @@ Taskboard.openDB = function() {
 			request.onfailure = Taskboard.onErrorDB;
 			request.onsuccess = function(e) {
 				Taskboard.tasksDB = e.target.result.db;
-				Taskboard.tasksDB.deleteObjectStore("task");
+				//Taskboard.tasksDB.deleteObjectStore("task");
 				Taskboard.tasksDB.createObjectStore("task", {keyPath:'id'},true);
 				Taskboard.getAllTasksFromDataBase(initTasksAndSyncButtonCallBack);	
 		    };
