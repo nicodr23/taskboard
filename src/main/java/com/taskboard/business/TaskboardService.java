@@ -21,12 +21,13 @@ import com.taskboard.data.Task;
 public class TaskboardService {
 
 	// Singleton stuff
-	private static TaskboardService instance = null;
-	private TaskboardService() {};
+	private static TaskboardService instance = new TaskboardService();
+	private TaskboardService() {
+		initTaskboard();
+	};
 	
 	/** Returns the unique instance */
 	public static TaskboardService get() {
-		if (instance == null) instance = new TaskboardService();
 		return instance;
 	}
 	
@@ -80,8 +81,10 @@ public class TaskboardService {
 	 * Creates a new task, in the "todo" status
 	 * @param label text of the task to add
 	 */
-	public void add(String label) {
-		taskboard.save(new Task(label, TODO));
+	public Task add(String label) {
+		Task task = new Task(label, TODO);
+		taskboard.save(task);
+		return task;
 	}
 	
 	/**
